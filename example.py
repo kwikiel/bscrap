@@ -1,7 +1,7 @@
 import requests
 from requests_jwt import JWTAuth
 
-secret = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmJpdGxlbmRpbmdjbHViLmNvbVwvYXBpXC90b2tlbiIsInN1YiI6IjY3MzYiLCJpYXQiOjE0Mzg2Nzg2NTEsImV4cCI6MTQ0MTI3MDY1MX0.I4nVxq94COixxnh6U1U9gcmkjkCZutxwJOYMKXzCsF8'
+secret = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmJpdGxlbmRpbmdjbHViLmNvbVwvYXBpXC90b2tlbiIsInN1YiI6IjY3MzYiLCJpYXQiOjE0NDEzNzY4MTIsImV4cCI6MTQ0Mzk2ODgxMn0.ihBeEJ9CRGzUBomQTbU4STitCbKCjkGkdlt_4rELyG4'
 
 def post_example():
     url = "https://api.bitlendingclub.com/api/investment"
