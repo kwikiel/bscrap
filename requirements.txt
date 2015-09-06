@@ -1,0 +1,12 @@
+PyJWT==1.4.0
+decorator==4.0.2
+ipython==4.0.0
+ipython-genutils==0.1.0
+lxml==3.4.4
+path.py==8.1
+pexpect==3.3
+pickleshare==0.5
+requests==2.7.0
+requests-jwt==0.4
+simplegeneric==0.8.1
+traitlets==4.0.0
