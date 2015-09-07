@@ -1,9 +1,6 @@
 import requests
 # from requests_jwt import JWTAuth
-secret = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLm\
-JpdGxlbmRpbmdjbHViLmNvbVwvYXBpXC90b2tlbiIsInN1YiI6IjY3MzYiLCJpYXQiOjE0NDEzNzY\
-4MTIsImV4cCI6MTQ0Mzk2ODgxMn0.ihBeEJ9CRGzUBomQTbU4STitCbKCjkGkdlt_4rELyG4'
-
+secret = 'uhmm secret? xD'
 
 def post_example():
     url = "https://api.bitlendingclub.com/api/investment"
