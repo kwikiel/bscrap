@@ -28,11 +28,13 @@ URL = 'https://bitlendingclub.com/user/index/id/'
 SUFFIX = ''
 XPATH = '//*[@id="tabs"]/div[1]/table/tbody/tr[5]/td[2]/div[4]/text()'
 BEGIN = 3500
-
+num_worker_threads = 8
 # BEGIN equals largest key in db...
-current = db.engine.execute("SELECT id FROM borrower ORDER BY id DESC LIMIT 1; ")
+query = "SELECT id FROM borrower ORDER BY id DESC LIMIT 1;"
+current = db.engine.execute(query)
 for c in current:
     BEGIN = c[0]
+
 END = 18000
 
 
@@ -55,7 +57,7 @@ def worker():
         item = q.get()
         try:
             la = loaned_amount(item)
-            if la>-1:
+            if la > -1:
                 # Database insertion here
                 borrower = Borrower(id=item, active=la)
                 db.session.add(borrower)
@@ -66,7 +68,6 @@ def worker():
 
         q.task_done()
 q = Queue()
-num_worker_threads = 8
 for i in range(num_worker_threads):
     t = Thread(target=worker)
     t.daemon = True
