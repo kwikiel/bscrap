@@ -7,7 +7,8 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQALCHEMY_DATABASE_URI'] = 'sqlite:///scraping.db'
+dbconn = 'wojak:piwo@localhost:5432/cebula'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://'+str(dbconn)
 db = SQLAlchemy(app)
 
 
@@ -26,7 +27,12 @@ class Borrower(db.Model):
 URL = 'https://bitlendingclub.com/user/index/id/'
 SUFFIX = ''
 XPATH = '//*[@id="tabs"]/div[1]/table/tbody/tr[5]/td[2]/div[4]/text()'
-BEGIN = 1
+BEGIN = 3500
+
+# BEGIN equals largest key in db...
+current = db.engine.execute("SELECT id FROM borrower ORDER BY id DESC LIMIT 1; ")
+for c in current:
+    BEGIN = c[0]
 END = 18000
 
 
@@ -59,9 +65,8 @@ def worker():
             pass
 
         q.task_done()
-
 q = Queue()
-num_worker_threads = 2
+num_worker_threads = 8
 for i in range(num_worker_threads):
     t = Thread(target=worker)
     t.daemon = True
