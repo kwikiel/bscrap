@@ -1,13 +1,13 @@
 from lxml import html
 import requests
-from queue import Queue
+#from queue import Queue
 from threading import Thread
 
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-dbconn = 'wojak:piwo@localhost:5432/cebula'
+dbconn = 'postgres:postgres@localhost:5432'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://'+str(dbconn)
 db = SQLAlchemy(app)
 
@@ -30,10 +30,11 @@ XPATH = '//*[@id="tabs"]/div[1]/table/tbody/tr[5]/td[2]/div[4]/text()'
 BEGIN = 3500
 num_worker_threads = 8
 # BEGIN equals largest key in db...
-query = "SELECT id FROM borrower ORDER BY id DESC LIMIT 1;"
-current = db.engine.execute(query)
-for c in current:
-    BEGIN = c[0]
+#query = "SELECT id FROM borrower ORDER BY id DESC LIMIT 1;"
+#current = db.engine.execute(query)
+#for c in current:
+#    BEGIN = c[0]
+#    print(BEGIN)
 
 END = 18000
 
@@ -51,7 +52,7 @@ def face(id):
     face_id = tree.xpath(XPATH)
     return face_id[0].get('href') if face_id else 'Empty'
 
-
+'''
 def worker():
     while True:
         item = q.get()
@@ -77,3 +78,4 @@ for item in range(BEGIN, END):
     q.put(item)
 
 q.join()
+'''
